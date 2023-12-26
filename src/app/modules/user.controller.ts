@@ -6,8 +6,6 @@ const createUser = async (req: Request, res: Response) => {
     const user = req.body;
     const result = await userService.createUserIntoDb(user);
 
-    // const { password , ...resultWithoutPassword} = result;
-
     res.status(200).json({
       success: true,
       message: "User created successfully!",
@@ -24,7 +22,7 @@ const getUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Users fetched successfully!",
+      message: "Successfully fetched all users!",
       data: result,
     });
   } catch (err) {
@@ -88,7 +86,7 @@ const addOrder = async (req: Request, res: Response) => {
     const user = req.body;
     const { userId } = req.params;
 
-    const result = await userService.addOrderIntoDb(user, Number(userId));
+    await userService.addOrderIntoDb(user, Number(userId));
 
     res.status(200).json({
       success: true,
@@ -107,7 +105,7 @@ const getOrder = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Users fetched successfully!",
+      message: "Retrieved user orders!",
       data: result,
     });
   } catch (err) {
@@ -130,7 +128,7 @@ const getOrderPrice = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Total price calculated successfully!",
+      message: "Successfully calculated total price!",
       data: {
         totalPrice: result,
       },
